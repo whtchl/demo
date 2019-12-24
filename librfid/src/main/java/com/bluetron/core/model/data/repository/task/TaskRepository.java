@@ -2,6 +2,8 @@ package com.bluetron.core.model.data.repository.task;
 
 import com.bluetron.core.bean.task.TaskListResponse;
 
+import java.util.List;
+
 import io.reactivex.Observable;
 
 /**
@@ -10,6 +12,6 @@ import io.reactivex.Observable;
  */
 public interface TaskRepository {
 
-    Observable<TaskListResponse> getTaskList(String token);
+    Observable<List<TaskListResponse>> getTaskList(String token);
 
 }

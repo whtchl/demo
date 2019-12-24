@@ -4,6 +4,8 @@ import com.bluetron.core.bean.task.TaskListResponse;
 import com.bluetron.core.model.data.datastore.task.TaskLocalDataStore;
 import com.bluetron.core.model.data.datastore.task.TaskRemoteDataStore;
 
+import java.util.List;
+
 import io.reactivex.Observable;
 
 /**
@@ -23,14 +25,12 @@ public class TaskRepositoryImpl implements TaskRepository{
     }
 
     @Override
-    public Observable<TaskListResponse> getTaskList(String token) {
-        return null;
+    public Observable<List<TaskListResponse>> getTaskList(String token) {
+        return remoteDataStore.getTaskList(token);
     }
 
 
-    public Observable<TaskListResponse> getTaskList(){
-        return null;
-    }
+
 
 
 }

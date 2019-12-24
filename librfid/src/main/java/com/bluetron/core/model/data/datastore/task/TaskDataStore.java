@@ -2,6 +2,8 @@ package com.bluetron.core.model.data.datastore.task;
 
 import com.bluetron.core.bean.task.TaskListResponse;
 
+import java.util.List;
+
 import io.reactivex.Observable;
 
 /**
@@ -10,7 +12,7 @@ import io.reactivex.Observable;
  */
 public abstract class TaskDataStore {
 
-    public Observable<TaskListResponse> getTaskList(String token) {
+    public Observable<List<TaskListResponse>> getTaskList(String token) {
         return null;
     }
 

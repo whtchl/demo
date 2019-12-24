@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bluetron.librfid.R;
 import com.bluetron.rxretrohttp.interfaces.IBaseApiAction;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
@@ -21,6 +22,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IBaseA
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ARouter.getInstance().inject(this);
         if (getContentViewLayoutID() != 0) {
             setContentView(getContentViewLayoutID());
             if (shouldBindEvent()) {

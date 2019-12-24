@@ -13,7 +13,11 @@ import retrofit2.http.Query;
 public interface ApiService {
 
 
+//    @GET(Apis.LoginAPI.PHONE_LOGIN)
+//    Observable<TaskListResponse> getToken(@Query("token")String token);
+
+
     @GET(Apis.TaskAPI.GET_TASK_LIST)
-    Observable<TaskListResponse> getToken(@Query("token")String token);
+    Observable<TaskListResponse> getTaskList(@Query("token")String token);
 
 }

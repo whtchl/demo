@@ -1,4 +1,4 @@
-package com.bluetron.ui.main;
+package com.bluetron.ui.activity;
 
 /**
  * @auther tongxb

@@ -7,4 +7,6 @@ package com.bluetron.core.model.data.datastore.login;
 public abstract class LoginDataStore {
 
 
+
+
 }

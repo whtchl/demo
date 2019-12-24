@@ -1,0 +1,2 @@
+include ':app',':rxretrohttp',':librfid'
+rootProject.name='supLink_RFID'

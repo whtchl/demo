@@ -16,7 +16,7 @@ public abstract class TaskDataStore {
         return null;
     }
 
-    public void saveTaskList(TaskListResponse taskListResponse) {
+    public void saveTaskList(List<TaskListResponse> taskListResponse) {
 
     }
 

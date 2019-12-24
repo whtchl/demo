@@ -30,6 +30,7 @@ public class TaskPresenter extends BasePresenterImpl<TaskContract.View> implemen
 
     @Override
     public void getTaskList(String token) {
+
         mRepository.getTaskList(token)
                 .compose(mView.getLifecycleTransformer())
                 .subscribe(new ApiObserver<List<TaskListResponse>>(mView) {

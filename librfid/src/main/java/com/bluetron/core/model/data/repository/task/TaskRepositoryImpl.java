@@ -26,7 +26,8 @@ public class TaskRepositoryImpl implements TaskRepository{
 
     @Override
     public Observable<List<TaskListResponse>> getTaskList(String token) {
-        return remoteDataStore.getTaskList(token);
+        return remoteDataStore.getTaskList(token)
+                .doOnNext(result -> localDataStore.saveTaskList(result));
     }
 
 

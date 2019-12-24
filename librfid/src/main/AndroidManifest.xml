@@ -1,5 +1,6 @@
-<manifest package="com.bluetron.librfid"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bluetron.librfid">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -7,5 +8,10 @@
     <application
         android:allowBackup="true"
         android:label="@string/app_name"
-        android:supportsRtl="true" />
+        android:supportsRtl="true">
+        <activity android:name="com.bluetron.ui.activity.WriteRfidActivity"></activity>
+        <activity android:name="com.bluetron.ui.activity.DeviceDetailActivity" />
+        <activity android:name="com.bluetron.ui.activity.TaskDetailActivity" />
+    </application>
+
 </manifest>

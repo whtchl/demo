@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">librfid</string>
+
+    <!--1224 begin-->
+    <string name="write_rfid">写入RFID标签</string>
+    <string name="security_remind">为保证您的信息安全，XXXXXXX</string>
+    <string name="rfid">RFID</string>
+    <string name="current_data">当前内容</string>
+    <string name="write_data">写入内容</string>
+
+    <string name="device_id">设备ID</string>
+    <string name="last_modify_time">最后修改时间</string>
+    <string name="id">ID:</string>
+    <string name="jd">进度:</string>
+    <string name="devices">个设备</string>
+    <string name="rwxfr">任务下发人</string>
+    <string name="begin_time">开始时间</string>
+    <string name="end_time">结束时间</string>
+    <string name="begin_scan">开始扫描</string>
+    <string name="finish_scan">结束扫描</string>
+    <string name="done_task">完成任务</string>
+    <!--1224 end-->
 </resources>

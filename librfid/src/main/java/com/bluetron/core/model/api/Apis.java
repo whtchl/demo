@@ -6,7 +6,7 @@ package com.bluetron.core.model.api;
  */
 public class Apis {
 
-    private static final String API_REMOTE_TITLE = "http://106.15.197.181:8888/";
+    private static final String API_REMOTE_TITLE = "/";
 
 
 

@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/btn"
+<LinearLayout android:background="#f0f0f0"
+    android:id="@+id/score_layout"
+    android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--ImageView
+        android:id="@+id/bttest"
+        android:layout_gravity="center"
+        android:layout_height="match_parent"
+        android:layout_width="50dp"
+        android:src="@mipmap/ic_launcher" />-->
+    <TextView
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ddd"
+        android:id="@+id/tv_rfid_item"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#778899"/>
+
+</LinearLayout>

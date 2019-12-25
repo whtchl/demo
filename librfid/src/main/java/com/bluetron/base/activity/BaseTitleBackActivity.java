@@ -19,6 +19,7 @@ public abstract class BaseTitleBackActivity extends BaseBackActivity {
     }
 
     public void setTitleTxt(String title) {
+        //commonTvTitle = findViewById(R.id.common_tv_title);
         commonTvTitle.setText(title);
     }
 

@@ -2,6 +2,7 @@ package com.bluetron.ui.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.bluetron.base.activity.BaseBackActivity;
 import com.bluetron.contract.task.TaskContract;
@@ -35,6 +36,6 @@ public class TaskDetailActivity extends BaseBackActivity implements TaskContract
 
     @Override
     public void onGetTaskList(List<TaskListResponse> response) {
-
+        Log.i("tchl","size:"+response.size());
     }
 }

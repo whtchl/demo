@@ -21,7 +21,7 @@ public interface TaskContract {
 
     interface Presenter extends BasePresenter<View>{
 
-        void getTaskList(String token);
+        void getTaskList();
 
     }
 

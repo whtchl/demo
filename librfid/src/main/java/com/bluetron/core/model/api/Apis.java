@@ -6,7 +6,7 @@ package com.bluetron.core.model.api;
  */
 public class Apis {
 
-    private static final String API_REMOTE_TITLE = "/zhizhi/api/remotedataService/api/";
+    private static final String API_REMOTE_TITLE = "http://106.15.197.181:8888/";
 
 
 
@@ -19,6 +19,6 @@ public class Apis {
 
     public static class TaskAPI {
         public static final String
-                GET_TASK_LIST = API_REMOTE_TITLE + "user/logout";
+                GET_TASK_LIST = API_REMOTE_TITLE + "tasks";
     }
 }

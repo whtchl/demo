@@ -22,8 +22,8 @@ public class TaskRemoteDataStore extends TaskDataStore{
 
 
     @Override
-    public Observable<List<TaskListResponse>> getTaskList(String token) {
-        return mService.getTaskList(token);
+    public Observable<List<TaskListResponse>> getTaskList() {
+        return mService.getTaskList();
     }
 
 }

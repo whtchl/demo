@@ -20,6 +20,6 @@ public interface ApiService {
 
 
     @GET(Apis.TaskAPI.GET_TASK_LIST)
-    Observable<List<TaskListResponse>> getTaskList(@Query("token")String token);
+    Observable<List<TaskListResponse>> getTaskList();//@Query("token")String token
 
 }

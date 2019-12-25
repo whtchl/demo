@@ -12,7 +12,7 @@ import io.reactivex.Observable;
  */
 public abstract class TaskDataStore {
 
-    public Observable<List<TaskListResponse>> getTaskList(String token) {
+    public Observable<List<TaskListResponse>> getTaskList() {
         return null;
     }
 

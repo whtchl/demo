@@ -12,6 +12,6 @@ import io.reactivex.Observable;
  */
 public interface TaskRepository {
 
-    Observable<List<TaskListResponse>> getTaskList(String token);
+    Observable<List<TaskListResponse>> getTaskList();
 
 }

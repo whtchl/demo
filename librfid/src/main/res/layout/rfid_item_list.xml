@@ -2,6 +2,50 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <TextView
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="选择周围的RFID标签"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/red"/>
+
+    <android.support.v7.widget.RecyclerView
+    android:id="@+id/recycle_view_rfid_list"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    />
+</LinearLayout>
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_scrollFlags="scroll|enterAlways|snap">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>-->
+<!--
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
     <TextView
         android:layout_width="wrap_content"
@@ -12,9 +56,10 @@
         android:layout_height="0.5dp"
         android:background="@color/red"/>
 
-    <!--<android.support.v7.widget.RecyclerView
+    &lt;!&ndash;<android.support.v7.widget.RecyclerView
         android:id="@+id/recycle_view_rfid_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-         />-->
+         />&ndash;&gt;
 </LinearLayout>
+-->

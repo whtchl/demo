@@ -33,6 +33,7 @@ public class ApiException extends IOException {
     public ApiException(int code, String message) {
         super(message);
         this.code = code;
+        this.message = message;
     }
 
     public ApiException(Throwable throwable, int code) {
@@ -86,15 +87,11 @@ public class ApiException extends IOException {
             ex = new ApiException(e, TIMEOUT_ERROR);
             ex.message =  RxRetroHttp.sApplication.getString(R.string.okhttp_error_conn_time_out);
             return ex;
-        }
-//        else if (((ApiException)e).code == NETWORK_NOT_OPEN){
-//            ex = new ApiException(e, NETWORK_NOT_OPEN);
-//            ex.message = "无可用网络";
-//            return ex;
-//        }
-        else {
+        } else if (e instanceof ApiException){
+            return (ApiException) e;
+        } else {
             ex = new ApiException(e, NOT_CARE);
-            ex.message =  RxRetroHttp.sApplication.getString(R.string.okhttp_error_no_network);
+            ex.message =  RxRetroHttp.sApplication.getString(R.string.okhttp_error_server);
             return ex;
         }
     }

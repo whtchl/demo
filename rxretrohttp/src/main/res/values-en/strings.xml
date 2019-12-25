@@ -3,4 +3,6 @@
     <string name="okhttp_error_conn_fail">connection failed</string>
     <string name="okhttp_error_conn_time_out">connection timed out</string>
     <string name="okhttp_error_no_network">The network is not available. Please try again later!</string>
+
+    <string name="okhttp_error_server">服务不可用，请稍后再试!</string>
 </resources>

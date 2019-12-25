@@ -12,7 +12,7 @@
         <activity android:name="com.bluetron.ui.activity.WriteRfidActivity"></activity>
         <activity android:name="com.bluetron.ui.activity.TaskDetailActivity" />
         <activity android:name="com.bluetron.ui.activity.TaskListActivity" />
-
+        <activity android:name="com.bluetron.ui.activity.RfidDemoActivity" />
         <activity android:name="com.bluetron.ui.activity.devicedetail.DeviceDetailActivity" />
     </application>
 

@@ -15,6 +15,10 @@ public class Navigation {
                 .navigation();
     }
 
+    public static void navigateToRfidDemo() {
+        ARouter.getInstance().build(PathConstants.PATH_RFID_DEMO)
+                .navigation();
+    }
 
     //task detail
     public static void navigateToTaskDetail() {

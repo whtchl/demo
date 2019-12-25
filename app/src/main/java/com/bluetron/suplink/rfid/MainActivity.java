@@ -19,14 +19,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startTaskListActivity();
+         startRfidDemoActivity();
+        //startTaskListActivity();
         finish();
     }
-    private void startMainActivity(){
+    private void startDeviceDetailActivity(){
         Intent intent = new Intent(this, com.bluetron.ui.activity.devicedetail.DeviceDetailActivity.class);
         startActivity(intent);
     }
 
+    private void startRfidDemoActivity(){
+        /*Intent intent = new Intent(this, com.bluetron.ui.activity.RfidDemoActivity.class);
+        startActivity(intent);*/
+        Navigation.navigateToRfidDemo();
+    }
     private void startTaskListActivity(){
 
         Navigation.navigateToTaskList();

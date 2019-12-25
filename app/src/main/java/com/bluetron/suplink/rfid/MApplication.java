@@ -2,6 +2,7 @@ package com.bluetron.suplink.rfid;
 
 import android.support.multidex.MultiDexApplication;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bluetron.rxretrohttp.RxRetroHttp;
 
 import javax.net.ssl.HostnameVerifier;
@@ -16,6 +17,8 @@ public class MApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        ARouter.init(this);
 
         RxRetroHttp.getInstance().resetInterceptor()
                 .setBaseUrl("http://106.15.197.181:8888")

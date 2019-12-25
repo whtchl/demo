@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.bluetron.core.bean.rfid.Rfid;
+import com.bluetron.router.Navigation;
 import com.bluetron.ui.activity.TaskDetailActivity;
 
 import java.util.ArrayList;
@@ -27,8 +28,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startTaskListActivity(){
-        Intent intent = new Intent(this, com.bluetron.ui.activity.TaskListActivity.class);
-        startActivity(intent);
+
+        Navigation.navigateToTaskList();
+//        Intent intent = new Intent(this, com.bluetron.ui.activity.TaskListActivity.class);
+//        startActivity(intent);
     }
    /* private void startDeviceDetailActivity(){
         Intent intent = new Intent(this, DeviceDetailActivityDel.class);

@@ -32,10 +32,8 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IBaseA
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        //ARouter.getInstance().inject(this);
-
         super.onCreate(savedInstanceState);
-        //ARouter.getInstance().inject(this);
+        ARouter.getInstance().inject(this);
         if (getContentViewLayoutID() != 0) {
             setContentView(getContentViewLayoutID());
             if (shouldBindEvent()) {

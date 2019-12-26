@@ -1,2 +1,2 @@
-include ':app',':rxretrohttp',':librfid'
+include ':app',':rxretrohttp',':librfid', ':liboemrfid'
 rootProject.name='supLink_RFID'

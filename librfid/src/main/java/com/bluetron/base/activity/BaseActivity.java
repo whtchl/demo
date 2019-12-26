@@ -39,8 +39,9 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IBaseA
             if (shouldBindEvent()) {
                 EventBus.getDefault().register(this);
             }
-            initVariables();
             initViews();
+            initVariables();
+
             initLoadingDialog();
         } else {
             throw new IllegalArgumentException("You must set a layoutID for activity first!");

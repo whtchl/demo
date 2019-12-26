@@ -1,6 +1,11 @@
 package com.bluetron.router;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.bluetron.core.bean.task.TaskListResponse;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @auther tongxb
@@ -21,8 +26,15 @@ public class Navigation {
     }
 
     //task detail
-    public static void navigateToTaskDetail() {
+    public static void navigateToTaskDetail(TaskListResponse taskListResponse) {//, ArrayList<TaskListResponse.device> deviceList
         ARouter.getInstance().build(PathConstants.PATH_TASK_DETAIL)
+                .withParcelable("taskListResponse",  taskListResponse)
+                //.withParcelableArrayList("deviceList",deviceList)
+                .navigation();
+    }
+
+    public static void navigateToAroundRfidList() {//, ArrayList<TaskListResponse.device> deviceList
+        ARouter.getInstance().build(PathConstants.PATH_AROUND_RFID_LIST)
                 .navigation();
     }
 

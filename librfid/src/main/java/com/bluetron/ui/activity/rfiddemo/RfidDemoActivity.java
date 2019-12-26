@@ -1,4 +1,4 @@
-package com.bluetron.ui.activity;
+package com.bluetron.ui.activity.rfiddemo;
 
 import android.view.View;
 
@@ -17,7 +17,7 @@ public class RfidDemoActivity extends BaseTitleBackActivity {
     @Override
     protected void initViews() {
         inflateBaseView();
-
+        setBackVisibility(View.GONE);
         setTitleTxt("RFID DEMO");
 
     }
@@ -29,7 +29,7 @@ public class RfidDemoActivity extends BaseTitleBackActivity {
 
     @Override
     protected int getContentViewLayoutID() {
-        return R.layout.activity_rfid_demo;
+                return R.layout.activity_rfid_demo;
     }
     //下载任务
     public void OnClickXzrw(View v) {
@@ -37,7 +37,7 @@ public class RfidDemoActivity extends BaseTitleBackActivity {
     }
     //写入标签
     public void OnClickXrbq(View v) {
-        //Navigation.navigateToTaskList();
+        Navigation.navigateToAroundRfidList();
     }
 
     //我的任务

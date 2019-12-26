@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_layout_header" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header_root"
+        android:background="#ffffff">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll4"
+                android:descendantFocusability="blocksDescendants">
+
+                <android.support.v7.widget.RecyclerView
+
+                    android:id="@+id/recycle_view_device_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+
+            <Button
+
+                android:id="@+id/btn_around_rfid_list_scan"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@id/rl1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/button_green_bg"
+                android:onClick="OnClickStartStopScan"
+                android:text="@string/begin_scan"
+                android:textColor="@color/white"></Button>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

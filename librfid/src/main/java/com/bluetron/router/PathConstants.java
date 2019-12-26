@@ -14,4 +14,5 @@ public class PathConstants {
 
     public static final String PATH_RFID ="/rfid";
     public static final String PATH_RFID_DEMO = PATH_RFID+"/rfiddemo";
+    public static final String PATH_AROUND_RFID_LIST = PATH_RFID +"/aroundrfidlist";
 }

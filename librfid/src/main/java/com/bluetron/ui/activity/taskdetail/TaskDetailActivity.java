@@ -101,7 +101,6 @@ public class TaskDetailActivity extends BaseTitleBackActivity implements TaskCon
         Log.i("tchl","size:"+response.size());
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)   
     public void OnClickBeginStopScan(View v) {
         if(btnScan.getText().equals("开始扫描")){
             btnScan.setText("停止扫描");

@@ -16,16 +16,20 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.bluetron.base.activity.BaseTitleBackActivity;
 import com.bluetron.core.bean.rfid.Rfid;
+import com.bluetron.core.bean.task.TaskListResponse;
 import com.bluetron.librfid.R;
 import com.bluetron.router.PathConstants;
+import com.bluetron.utils.TUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Route(path = PathConstants.PATH_DEVICE_DETAIL)
-public class DeviceDetailActivity extends AppCompatActivity {
+public class DeviceDetailActivity extends BaseTitleBackActivity {
     Button btnDeviceWriteRfid;
     private static final String TAG = "MainActivity";
     private LinearLayout llChose;
@@ -36,10 +40,11 @@ public class DeviceDetailActivity extends AppCompatActivity {
     private PopupWindow mPop;
     private RecyclerView rvPop;
     private RfidListAdapter rfidListAdapter;
-
+    TextView tvDeviceName, tvDeviceId,tvId,tvDeviceTime;
     private List<Rfid> listBean;
-
-    @Override
+    @Autowired
+    TaskListResponse.device device;
+  /*  @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_detail);
@@ -47,6 +52,34 @@ public class DeviceDetailActivity extends AppCompatActivity {
         setPop();
         initView();
         initEvent();
+    }*/
+
+    @Override
+    protected void initViews() {
+        inflateBaseView();
+        setBackVisibility(View.VISIBLE);
+        setTitleTxt(device.getName());
+        findViews();
+        setPop();
+        initView();
+        initEvent();
+
+
+    }
+
+    @Override
+    protected void initVariables() {
+        if(device != null){
+            tvDeviceId.setText(device.getId());
+            tvDeviceName.setText(device.getName());
+            tvId.setText(device.getId());
+            tvDeviceTime.setText(TUtils.longtoDateString(Long.valueOf(device.getLastModifyDate())));
+        }
+    }
+
+    @Override
+    protected int getContentViewLayoutID() {
+        return R.layout.activity_device_detail;
     }
 
     /**
@@ -94,8 +127,12 @@ public class DeviceDetailActivity extends AppCompatActivity {
 
 
     private void findViews() {
-        rvChosed= (RecyclerView) findViewById(R.id.rv_chosed);
+        rvChosed = (RecyclerView) findViewById(R.id.rv_chosed);
         btnDeviceWriteRfid = findViewById(R.id.btn_device_write_rfid);
+        tvDeviceId = findViewById(R.id.tv_device_id);
+        tvDeviceName = findViewById(R.id.tv_device_name);
+        tvId = findViewById(R.id.tv_id);
+        tvDeviceTime = findViewById(R.id.tv_device_time);
     }
 
     /**

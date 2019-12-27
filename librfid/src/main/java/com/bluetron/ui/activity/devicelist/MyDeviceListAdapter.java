@@ -53,7 +53,7 @@ public class MyDeviceListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             ((NormalHolder) holder).llDevice.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Navigation.navigateDeviceDetail();//Navigation.navigateToTaskDetail(datas.get(position));
+                    Navigation.navigateDeviceDetail(datas.get(position));//Navigation.navigateToTaskDetail(datas.get(position));
                 }
             });
 

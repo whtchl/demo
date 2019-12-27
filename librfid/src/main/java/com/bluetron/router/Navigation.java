@@ -38,8 +38,9 @@ public class Navigation {
                 .navigation();
     }
 
-    public static void navigateDeviceDetail() {//, ArrayList<TaskListResponse.device> deviceList
+    public static void navigateDeviceDetail(TaskListResponse.device device) {//, ArrayList<TaskListResponse.device> deviceList
         ARouter.getInstance().build(PathConstants.PATH_DEVICE_DETAIL)
+                .withParcelable("device",  device)
                 .navigation();
     }
 

@@ -12,7 +12,11 @@ public class PathConstants {
     public static final String PATH_TASK_DETAIL = PATH_GROUP_TASK + "/taskDetail";
 
 
-    public static final String PATH_RFID ="/rfid";
-    public static final String PATH_RFID_DEMO = PATH_RFID+"/rfiddemo";
-    public static final String PATH_AROUND_RFID_LIST = PATH_RFID +"/aroundrfidlist";
+    public static final String PATH_RFID = "/rfid";
+    public static final String PATH_RFID_DEMO = PATH_RFID + "/rfiddemo";
+    public static final String PATH_AROUND_RFID_LIST = PATH_RFID + "/aroundrfidlist";
+
+    public static final String PATH_DEVICE = "/device";
+    public static final String PATH_DEVICE_DETAIL = PATH_DEVICE + "/devicedetail";
+    public static final String PATH_DEVICE_LIST = PATH_DEVICE + "/devicelist";
 }

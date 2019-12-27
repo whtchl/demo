@@ -16,12 +16,15 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bluetron.core.bean.rfid.Rfid;
 import com.bluetron.librfid.R;
+import com.bluetron.router.PathConstants;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Route(path = PathConstants.PATH_DEVICE_DETAIL)
 public class DeviceDetailActivity extends AppCompatActivity {
     Button btnDeviceWriteRfid;
     private static final String TAG = "MainActivity";

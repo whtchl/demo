@@ -44,7 +44,7 @@ public class RealOemRfid extends OemRfid {
     @Override
     public Boolean continueScanRfid() {
         if (mOemType == OemType.SECUIC) {
-            return  mDeviceSecuic.inventoryStart();
+            return mDeviceSecuic.inventoryStart();
         }
         return false;
     }
@@ -60,6 +60,7 @@ public class RealOemRfid extends OemRfid {
     @Override
     public void closeRfid() {
         if (mOemType == OemType.SECUIC) {
+            Toast.makeText(mContext,"关闭Rfid",Toast.LENGTH_SHORT).show();
             mDeviceSecuic.close();
         }
     }
@@ -73,7 +74,15 @@ public class RealOemRfid extends OemRfid {
     }
 
     @Override
-    public Boolean writeRfid(byte[] Epc, byte[] PassWord, int Bank, int Offset ,int Len, byte[] Data) {
+    public Boolean RfidreadTagData(byte[] Epc, byte[] PassWord, int Bank, int Offset, int Len, byte[] Data) {
+        if (mOemType == OemType.SECUIC) {
+            return mDeviceSecuic.readTagData(Epc, PassWord, Bank, Offset, Len, Data);
+        }
+        return false;
+    }
+
+    @Override
+    public Boolean writeRfid(byte[] Epc, byte[] PassWord, int Bank, int Offset, int Len, byte[] Data) {
         if (mOemType == OemType.SECUIC) {
             return mDeviceSecuic.writeTagData(Epc, PassWord, Bank, Offset, Len, Data);
         }

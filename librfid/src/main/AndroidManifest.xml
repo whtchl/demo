@@ -9,7 +9,8 @@
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true">
-        <activity android:name="com.bluetron.ui.activity.aroundrfidlist.AroundRfidListActivity"></activity>
+        <activity android:name="com.bluetron.ui.activity.devicelist.DeviceListActivity"></activity>
+        <activity android:name="com.bluetron.ui.activity.aroundrfidlist.AroundRfidListActivity" />
         <activity android:name="com.bluetron.ui.activity.WriteRfidActivity" />
         <activity android:name="com.bluetron.ui.activity.taskdetail.TaskDetailActivity" />
         <activity android:name="com.bluetron.ui.activity.tasklist.TaskListActivity" />

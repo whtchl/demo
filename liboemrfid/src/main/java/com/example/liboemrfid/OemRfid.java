@@ -35,6 +35,8 @@ public abstract class OemRfid {
 
     public abstract List<EPC> readRfid();
 
+    public abstract Boolean RfidreadTagData(byte[] Epc, byte[] PassWord, int Bank, int Offset, int Len, byte[] Data);
+
     public abstract Boolean writeRfid(byte[] Epc, byte[] PassWord, int Bank, int Offset ,int Len, byte[] Data);
 
 }

@@ -21,7 +21,7 @@ public class MApplication extends MultiDexApplication {
         ARouter.init(this);
 
         RxRetroHttp.getInstance().resetInterceptor()
-                .setBaseUrl("http://192.168.8.84:8899")//http://192.168.8.84:8899   http://106.15.197.181:8888
+                .setBaseUrl("http://106.15.197.181:8888")//http://192.168.8.84:8899   http://106.15.197.181:8888
 //                .generateRetroClient("rfid")
                 .setTimeOut(15000)
 //                .addInterceptor(new HeaderInterceptor())

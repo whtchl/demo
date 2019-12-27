@@ -1,8 +1,10 @@
-package com.bluetron.ui.activity.tasklist;
+package com.bluetron.ui.activity.devicelist;
 
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,46 +12,40 @@ import android.util.Log;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.bluetron.base.activity.BaseBackActivity;
 import com.bluetron.base.activity.BaseTitleBackActivity;
 import com.bluetron.contract.task.TaskContract;
 import com.bluetron.core.bean.task.TaskListResponse;
 import com.bluetron.librfid.R;
 import com.bluetron.presenter.task.TaskPresenter;
 import com.bluetron.router.PathConstants;
+import com.bluetron.ui.activity.tasklist.MyAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @auther tongxb
- * @data 2019-12-24
- */
-@Route(path = PathConstants.PATH_TASK_LIST)
-public class TaskListActivity extends BaseTitleBackActivity implements TaskContract.View, SwipeRefreshLayout.OnRefreshListener {
+@Route(path = PathConstants.PATH_DEVICE_LIST)
+public class DeviceListActivity extends BaseTitleBackActivity implements TaskContract.View, SwipeRefreshLayout.OnRefreshListener {
     private SwipeRefreshLayout refreshLayout;
     private RecyclerView recyclerView;
     private int lastVisibleItem = 0;
     private final int PAGE_COUNT = 9999;
     private GridLayoutManager mLayoutManager;
-    private MyAdapter adapter;
+    private MyDeviceListAdapter adapter;
     private Handler mHandler = new Handler(Looper.getMainLooper());
     private List<TaskListResponse> taskListResponses = new ArrayList<TaskListResponse>();
     TaskPresenter taskPresenter;
-
     @Override
     protected void initViews() {
         taskPresenter = new TaskPresenter(this);
-
         inflateBaseView();
         setBackVisibility(View.VISIBLE);
-        setTitleTxt("任务列表");
+        setTitleTxt("所有设备");
+
         refreshLayout = (SwipeRefreshLayout) findViewById(R.id.refreshLayout);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         initRefreshLayout();
         initRecyclerView();
     }
-
 
     private void initRefreshLayout() {
         refreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light,
@@ -67,8 +63,9 @@ public class TaskListActivity extends BaseTitleBackActivity implements TaskContr
         return resList;
     }
 
+
     private void initRecyclerView() {
-        adapter = new MyAdapter(getDatas(0, PAGE_COUNT), this, getDatas(0, PAGE_COUNT).size() > 0 ? true : false);
+        adapter = new MyDeviceListAdapter(setDeviceList(getDatas(0, PAGE_COUNT)), this, getDatas(0, PAGE_COUNT).size() > 0 ? true : false);
         mLayoutManager = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(adapter);
@@ -109,11 +106,21 @@ public class TaskListActivity extends BaseTitleBackActivity implements TaskContr
 
     private void updateRecyclerView(int fromIndex, int toIndex) {
         List<TaskListResponse> newDatas = getDatas(fromIndex, toIndex);
-        if (newDatas.size() > 0) {
+        adapter.updateList(setDeviceList(newDatas),true);
+        /*if (newDatas.size() > 0) {
             adapter.updateList(newDatas, true);
         } else {
             adapter.updateList(null, false);
+        }*/
+
+    }
+
+    private List<TaskListResponse.device> setDeviceList(List<TaskListResponse> taskListResponses){
+        List<TaskListResponse.device> devices = new ArrayList<TaskListResponse.device>();
+        for(int i=0;i<taskListResponses.size();i++){
+            devices.addAll(taskListResponses.get(i).getList());
         }
+        return devices;
     }
     @Override
     public void onRefresh() {
@@ -126,7 +133,6 @@ public class TaskListActivity extends BaseTitleBackActivity implements TaskContr
 
     }
 
-
     @Override
     protected void initVariables() {
 
@@ -134,7 +140,7 @@ public class TaskListActivity extends BaseTitleBackActivity implements TaskContr
 
     @Override
     protected int getContentViewLayoutID() {
-        return R.layout.task_list_activity;
+        return R.layout.activity_device_list;
     }
 
     @Override
@@ -142,7 +148,6 @@ public class TaskListActivity extends BaseTitleBackActivity implements TaskContr
         super.onResume();
         refresh();
     }
-
     @Override
     public void onGetTaskList(List<TaskListResponse> response) {
         Log.i("tchl", "TaskListActivity size:" + response.size());

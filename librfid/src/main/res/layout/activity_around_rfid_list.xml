@@ -8,10 +8,31 @@
 
     <include layout="@layout/common_layout_header" />
 
+    <LinearLayout
+        android:id="@+id/ll1"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/header_root"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="总数："></TextView>
+
+        <TextView
+            android:gravity="center_vertical"
+            android:id="@+id/tv_rfid_total"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"></TextView>
+
+    </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/header_root"
+        android:layout_below="@id/ll1"
         android:background="#ffffff">
 
         <LinearLayout
@@ -28,7 +49,7 @@
 
                 <android.support.v7.widget.RecyclerView
 
-                    android:id="@+id/recycle_view_device_list"
+                    android:id="@+id/recycle_view_around_rfid_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </RelativeLayout>
@@ -43,9 +64,25 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="10dp"
+
                 android:background="@drawable/button_green_bg"
                 android:onClick="OnClickStartStopScan"
                 android:text="@string/begin_scan"
+                android:textColor="@color/white"></Button>
+
+
+            <Button
+                android:id="@+id/btn_around_rfid_list_read_data"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@id/rl1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/button_red_bg"
+                android:onClick="OnClickReadRfidListData"
+                android:text="读取数据"
                 android:textColor="@color/white"></Button>
         </LinearLayout>
     </ScrollView>

@@ -130,7 +130,11 @@ public class TaskListResponse implements Parcelable {
         private String id;
         private String lastModifyDate;
         private String name;
-
+        public device(String id1,String lastModifyDate1 ,String name1) {
+            this.id = id1;
+            this.lastModifyDate = lastModifyDate1;
+            this.name = name1;
+        }
         protected device(Parcel in) {
             id = in.readString();
             lastModifyDate = in.readString();

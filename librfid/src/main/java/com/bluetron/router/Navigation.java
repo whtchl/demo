@@ -38,4 +38,15 @@ public class Navigation {
                 .navigation();
     }
 
+    public static void navigateDeviceDetail() {//, ArrayList<TaskListResponse.device> deviceList
+        ARouter.getInstance().build(PathConstants.PATH_DEVICE_DETAIL)
+                .navigation();
+    }
+
+
+    public static void navigateDeviceList() {//, ArrayList<TaskListResponse.device> deviceList
+        ARouter.getInstance().build(PathConstants.PATH_DEVICE_LIST)
+                .navigation();
+    }
+
 }

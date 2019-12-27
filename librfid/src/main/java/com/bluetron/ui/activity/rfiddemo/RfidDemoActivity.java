@@ -1,19 +1,25 @@
 package com.bluetron.ui.activity.rfiddemo;
 
+import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bluetron.base.activity.BaseTitleBackActivity;
 import com.bluetron.librfid.R;
 import com.bluetron.router.Navigation;
 import com.bluetron.router.PathConstants;
-
+import com.example.liboemrfid.OemRfid;
+import com.example.liboemrfid.OemType;
+import com.seuic.uhf.UHFService;
+/*http://106.15.197.181:8888/swagger-ui.html#/controller/tasksUsingGET*/
 /**
  * @auther tongxb
  * @data 2019-12-23
  */
 @Route(path = PathConstants.PATH_RFID_DEMO)
 public class RfidDemoActivity extends BaseTitleBackActivity {
+
     @Override
     protected void initViews() {
         inflateBaseView();
@@ -47,5 +53,7 @@ public class RfidDemoActivity extends BaseTitleBackActivity {
     //设备明细
     public void OnClickSbmx(View v) {
         //Navigation.navigateToTaskList();
+        Navigation.navigateDeviceList();
     }
+
 }

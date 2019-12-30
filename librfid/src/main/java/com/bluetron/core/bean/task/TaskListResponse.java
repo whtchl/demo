@@ -128,17 +128,30 @@ public class TaskListResponse implements Parcelable {
 
     public static class device   implements Parcelable {
         private String id;
-        private String lastModifyDate;
+        private long lastModifyDate;
         private String name;
-        public device(String id1,String lastModifyDate1 ,String name1) {
+        public device(String id1,long lastModifyDate1 ,String name1) {
             this.id = id1;
             this.lastModifyDate = lastModifyDate1;
             this.name = name1;
         }
+
         protected device(Parcel in) {
             id = in.readString();
-            lastModifyDate = in.readString();
+            lastModifyDate = in.readLong();
             name = in.readString();
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(id);
+            dest.writeLong(lastModifyDate);
+            dest.writeString(name);
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
         }
 
         public static final Creator<device> CREATOR = new Creator<device>() {
@@ -153,20 +166,19 @@ public class TaskListResponse implements Parcelable {
             }
         };
 
+        public long getLastModifyDate() {
+            return lastModifyDate;
+        }
+
+        public void setLastModifyDate(long lastModifyDate) {
+            this.lastModifyDate = lastModifyDate;
+        }
         public String getId() {
             return id;
         }
 
         public void setId(String id) {
             this.id = id;
-        }
-
-        public String getLastModifyDate() {
-            return lastModifyDate;
-        }
-
-        public void setLastModifyDate(String lastModifyDate) {
-            this.lastModifyDate = lastModifyDate;
         }
 
         public String getName() {
@@ -177,17 +189,6 @@ public class TaskListResponse implements Parcelable {
             this.name = name;
         }
 
-        @Override
-        public int describeContents() {
-            return 0;
-        }
-
-        @Override
-        public void writeToParcel(Parcel parcel, int i) {
-            parcel.writeString(id);
-            parcel.writeString(lastModifyDate);
-            parcel.writeString(name);
-        }
     }
 
 

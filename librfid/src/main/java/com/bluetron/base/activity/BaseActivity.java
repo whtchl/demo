@@ -13,6 +13,8 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.ToastUtils;
 import com.bluetron.librfid.R;
 import com.bluetron.rxretrohttp.interfaces.IBaseApiAction;
+import com.example.liboemrfid.OemRfid;
+import com.example.liboemrfid.OemType;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
@@ -28,12 +30,17 @@ import org.greenrobot.eventbus.EventBus;
 public abstract class BaseActivity extends RxAppCompatActivity implements IBaseApiAction {
 
     public Dialog mLoadingDialog;//loading
+    @Override
+    protected void onPause() {
+        super.onPause();
 
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ARouter.getInstance().inject(this);
+
         if (getContentViewLayoutID() != 0) {
             setContentView(getContentViewLayoutID());
             if (shouldBindEvent()) {

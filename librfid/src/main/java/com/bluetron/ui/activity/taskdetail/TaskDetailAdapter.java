@@ -36,7 +36,11 @@ public class TaskDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
 
+    public void updateTaskDetailEpcList(ArrayList<ScanDevice>  list){
+        //scanDeviceArrayList.clear();
+        scanDeviceArrayList = list;
 
+    }
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         ((MyTaskDetailViewHolder) viewHolder).tvItemTaskName.setText(scanDeviceArrayList.get(i).getName());

@@ -2,6 +2,7 @@ package com.bluetron.router;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bluetron.core.bean.task.TaskListResponse;
+import com.seuic.uhf.EPC;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -50,4 +51,12 @@ public class Navigation {
                 .navigation();
     }
 
+
+    public static void navigateToWriteRfid(byte[] ecpid, String ecpidStr) { //, EPC epc
+        ARouter.getInstance().build(PathConstants.PATH_WRITE_RFID)
+                .withByteArray("ecpid",ecpid)
+                .withString("ecpidStr",ecpidStr)
+                //.withObject("epc",epc)
+                .navigation();
+    }
 }

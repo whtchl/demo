@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical">
-
+    <include layout="@layout/common_layout_header" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -60,7 +60,7 @@
             android:layout_weight="2"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:text="99999999999999999"/>
+            android:text=""/>
 
     </LinearLayout>
 
@@ -86,14 +86,17 @@
             android:paddingLeft="20dp"
             android:textSize="18sp"/>
         <EditText
+            android:id="@+id/et_data"
             android:layout_width="0dp"
             android:layout_weight="2"
             android:gravity="top"
-            android:maxLines="3"
-            android:layout_height="wrap_content"
+            android:maxLength="4"
+            android:inputType="number"
+            android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ"
+            android:layout_height="50dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/edit_bg"
-            android:lines="3"/>
+             />
     </LinearLayout>
 
     <Button
@@ -103,9 +106,23 @@
         android:layout_marginTop="40dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="5dp"
+        android:background="@drawable/button_green_bg"
+        android:onClick="OnClickReadRfidData"
+        android:textColor="@color/white"
+        android:text="读取RFID内容"
+        android:textSize="20sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/button_red_bg"
         android:textColor="@color/white"
-        android:text="@string/write_rfid"
+        android:onClick="OnClickWriteRfidData"
+        android:text="写入RFID标签"
         android:textSize="20sp" />
 
 </LinearLayout>

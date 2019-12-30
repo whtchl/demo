@@ -52,17 +52,17 @@ public class AroundRfidListActivity extends BaseTitleBackActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
-        // new object
+        /*// new object
         OemRfid.initialize(this, OemType.SECUIC);
         OemRfid.client();
         // open UHF
-        boolean ret =  OemRfid.client().openRfid();
+        boolean ret =  OemRfid.client().openRfid();*/
 
     }
     @Override
     protected void onPause() {
         super.onPause();
-        OemRfid.client().closeRfid();
+        //OemRfid.client().closeRfid();
     }
 
     @Override

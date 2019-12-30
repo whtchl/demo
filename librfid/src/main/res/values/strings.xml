@@ -2,7 +2,7 @@
     <string name="app_name">librfid</string>
 
     <!--1224 begin-->
-    <string name="write_rfid">写入RFID标签</string>
+    <string name="write_rfid">扫描并写入RFID标签</string>
     <string name="security_remind">为保证您的信息安全，*********</string>
     <string name="rfid">RFID</string>
     <string name="current_data">当前内容</string>

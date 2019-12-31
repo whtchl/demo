@@ -361,6 +361,7 @@ public class AroundRfidListActivity extends BaseTitleBackActivity {
 
                             //Toast.makeText(context, mEPCList.get(i).getId()+":读取Rfid数据失败", Toast.LENGTH_SHORT).show();
                             //emitter.onError(new Throwable(mEPCList.get(i).getId()+":读取Rfid数据失败"));
+                            epcDataList.add(new EpcData(mEPCList.get(i),"读取Rfid数据失败"));
                         } else {
                             //Toast.makeText(getActivity(), R.string.readTagData_sucess, Toast.LENGTH_SHORT).show();
                             //Toast.makeText(context, "读取Rfid数据成功", Toast.LENGTH_SHORT).show();
@@ -392,6 +393,7 @@ public class AroundRfidListActivity extends BaseTitleBackActivity {
             @Override
             public void onError(Throwable e) {
                 //Toast.makeText(context,e.getMessage(),Toast.LENGTH_SHORT).show();//e.getMessage()
+                Log.i("tchl",e.getMessage());
             }
 
             @Override

@@ -54,8 +54,8 @@ public class TaskDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        ((MyTaskDetailViewHolder) viewHolder).tvItemTaskName.setText(scanDeviceArrayList.get(i).getName());
-        ((MyTaskDetailViewHolder) viewHolder).tvItemDeviceData.setText(scanDeviceArrayList.get(i).getId());
+        ((MyTaskDetailViewHolder) viewHolder).tvItemTaskName.setText(scanDeviceArrayList.get(i).getDevice().getName());
+        ((MyTaskDetailViewHolder) viewHolder).tvItemDeviceData.setText(scanDeviceArrayList.get(i).getDevice().getId());
         if(scanDeviceArrayList.get(i).isIndicator()){
             ((MyTaskDetailViewHolder) viewHolder).ivIndicator.setVisibility(View.VISIBLE);
         }else{

@@ -94,9 +94,10 @@ public class TaskDetailActivity extends BaseTitleBackActivity implements TaskCon
             scanDevices.clear();
             for(int i=0;i<list.size();i++){
                 ScanDevice scanDevice = new ScanDevice();
-                scanDevice.setId(list.get(i).getId());
+                /*scanDevice.setId(list.get(i).getId());
                 scanDevice.setName(list.get(i).getName());
-                scanDevice.setLastModifyDate(list.get(i).getLastModifyDate());
+                scanDevice.setLastModifyDate(list.get(i).getLastModifyDate());*/
+                scanDevice.setDevice(list.get(i));
 
                 scanDevice.setIndicator(false);
                 scanDevices.add(scanDevice);
@@ -251,9 +252,9 @@ public class TaskDetailActivity extends BaseTitleBackActivity implements TaskCon
                 if(mEPCList.get(i).getId().contains("3400300833")){
 
                     for(int j=0; j<scanDevices.size(); j++){
-                        if(scanDevices.get(j).getId().contains("0001")){
+                        if(scanDevices.get(j).getDevice().getId().contains("0001")){
                             scanDevices.get(j).setIndicator(true);
-                            scanDevices.get(j).setLastModifyDate(System.currentTimeMillis());
+                            scanDevices.get(j).getDevice().setLastModifyDate(System.currentTimeMillis());
                             /*if(tempNumber<=taskListResponse.getList().size()){
                                 tempNumber++;
                             }*/
@@ -262,9 +263,9 @@ public class TaskDetailActivity extends BaseTitleBackActivity implements TaskCon
                 }else{
                     if(mEPCList.get(i).getId().contains("30000048029C130")){
                         for(int j=0; j<scanDevices.size(); j++){
-                            if(scanDevices.get(j).getId().contains("0002")){
+                            if(scanDevices.get(j).getDevice().getId().contains("0002")){
                                 scanDevices.get(j).setIndicator(true);
-                                scanDevices.get(j).setLastModifyDate(System.currentTimeMillis());
+                                scanDevices.get(j).getDevice().setLastModifyDate(System.currentTimeMillis());
                                 /*if(tempNumber<=taskListResponse.getList().size()){
                                     tempNumber++;
                                 }*/

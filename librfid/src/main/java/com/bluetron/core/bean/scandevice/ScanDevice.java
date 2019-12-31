@@ -2,28 +2,23 @@ package com.bluetron.core.bean.scandevice;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.style.TabStopSpan;
+
+import com.bluetron.core.bean.task.TaskListResponse;
 
 public class ScanDevice implements Parcelable  {
-    private String id;
-    private long lastModifyDate;
-    private String name;
-    private boolean indicator;
-    public  ScanDevice(){
 
-    }
+    private TaskListResponse.device device;
+    private boolean indicator;
 
     protected ScanDevice(Parcel in) {
-        id = in.readString();
-        lastModifyDate = in.readLong();
-        name = in.readString();
+        device = in.readParcelable(TaskListResponse.device.class.getClassLoader());
         indicator = in.readByte() != 0;
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
-        dest.writeLong(lastModifyDate);
-        dest.writeString(name);
+        dest.writeParcelable(device, flags);
         dest.writeByte((byte) (indicator ? 1 : 0));
     }
 
@@ -44,28 +39,16 @@ public class ScanDevice implements Parcelable  {
         }
     };
 
-    public String getId() {
-        return id;
+    public TaskListResponse.device getDevice() {
+        return device;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setDevice(TaskListResponse.device device) {
+        this.device = device;
     }
 
-    public long getLastModifyDate() {
-        return lastModifyDate;
-    }
+    public  ScanDevice(){
 
-    public void setLastModifyDate(long lastModifyDate) {
-        this.lastModifyDate = lastModifyDate;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public boolean isIndicator() {

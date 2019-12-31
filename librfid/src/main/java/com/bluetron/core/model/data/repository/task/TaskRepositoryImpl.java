@@ -3,6 +3,7 @@ package com.bluetron.core.model.data.repository.task;
 import com.bluetron.core.bean.task.TaskListResponse;
 import com.bluetron.core.model.data.datastore.task.TaskLocalDataStore;
 import com.bluetron.core.model.data.datastore.task.TaskRemoteDataStore;
+import com.bluetron.rxretrohttp.bean.NoneResponse;
 
 import java.util.List;
 
@@ -30,8 +31,10 @@ public class TaskRepositoryImpl implements TaskRepository{
                 .doOnNext(result -> localDataStore.saveTaskList(result));
     }
 
-
-
+    @Override
+    public Observable<NoneResponse> uploadTaskList(TaskListResponse taskListResponse) {
+        return remoteDataStore.uploadTaskList(taskListResponse);
+    }
 
 
 }

@@ -9,6 +9,7 @@ import com.bluetron.core.model.data.datastore.task.TaskRemoteDataStore;
 import com.bluetron.core.model.data.repository.task.TaskRepository;
 import com.bluetron.core.model.data.repository.task.TaskRepositoryImpl;
 import com.bluetron.rxretrohttp.RxRetroHttp;
+import com.bluetron.rxretrohttp.bean.NoneResponse;
 import com.bluetron.rxretrohttp.subscriber.ApiObserver;
 
 import java.util.List;
@@ -39,6 +40,18 @@ public class TaskPresenter extends BasePresenterImpl<TaskContract.View> implemen
                     @Override
                     protected void success(List<TaskListResponse> data) {
                         mView.onGetTaskList(data);
+                    }
+                });
+    }
+    @Override
+    public void uploadTaskList(TaskListResponse taskListResponse){
+        mRepository.uploadTaskList(taskListResponse)
+                .compose(mView.getLifecycleTransformer())
+                .compose(RxRetroHttp.composeApi())
+                .subscribe(new ApiObserver<NoneResponse>(mView) {
+                    @Override
+                    protected void success(NoneResponse data) {
+                        mView.onUploadTaskList();
                     }
                 });
     }

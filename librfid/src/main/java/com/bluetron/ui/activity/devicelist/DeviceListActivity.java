@@ -166,4 +166,9 @@ public class DeviceListActivity extends BaseTitleBackActivity implements TaskCon
         }, 1000);
 
     }
+
+    @Override
+    public void onUploadTaskList() {
+
+    }
 }

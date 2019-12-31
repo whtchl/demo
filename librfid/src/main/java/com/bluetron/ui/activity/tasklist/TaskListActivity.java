@@ -161,4 +161,9 @@ public class TaskListActivity extends BaseTitleBackActivity implements TaskContr
         }, 1000);
 
     }
+
+    @Override
+    public void onUploadTaskList() {
+
+    }
 }

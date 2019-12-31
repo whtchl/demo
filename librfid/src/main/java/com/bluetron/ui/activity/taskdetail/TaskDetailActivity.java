@@ -26,6 +26,7 @@ import com.bluetron.contract.task.TaskContract;
 import com.bluetron.core.bean.scandevice.ScanDevice;
 import com.bluetron.core.bean.task.TaskListResponse;
 import com.bluetron.librfid.R;
+import com.bluetron.presenter.task.TaskPresenter;
 import com.bluetron.router.Navigation;
 import com.bluetron.router.PathConstants;
 import com.bluetron.ui.activity.aroundrfidlist.AroundRfidListActivity;
@@ -53,9 +54,11 @@ public class TaskDetailActivity extends BaseTitleBackActivity implements TaskCon
     public boolean mInventoryStart = false;
    private List<EPC> mEPCList;
    String testtemp = "~";
-
+   int tempNumber=0;
+    TaskPresenter taskPresenter;
     @Override
     protected void initViews() {
+        taskPresenter = new TaskPresenter(this);
         inflateBaseView();
         setBackVisibility(View.VISIBLE);
         setTitleTxt("任务详情");
@@ -94,6 +97,7 @@ public class TaskDetailActivity extends BaseTitleBackActivity implements TaskCon
                 scanDevice.setId(list.get(i).getId());
                 scanDevice.setName(list.get(i).getName());
                 scanDevice.setLastModifyDate(list.get(i).getLastModifyDate());
+
                 scanDevice.setIndicator(false);
                 scanDevices.add(scanDevice);
             }
@@ -110,6 +114,11 @@ public class TaskDetailActivity extends BaseTitleBackActivity implements TaskCon
         Log.i("tchl","size:"+response.size());
     }
 
+    @Override
+    public void onUploadTaskList() {
+        Toast.makeText(this,"上传成功",Toast.LENGTH_LONG).show();
+    }
+
     public void OnClickBeginStopScan(View v) {
         if(btnScan.getText().equals("开始扫描")){
             /*btnScan.setText("停止扫描");
@@ -123,6 +132,17 @@ public class TaskDetailActivity extends BaseTitleBackActivity implements TaskCon
         }
     }
 
+    public void OnClickUploadData(View v) {
+        TaskListResponse listResponse = new TaskListResponse();
+        listResponse.setId("1");
+        listResponse.setName("周盘点");
+        TaskListResponse.device device1 =new  TaskListResponse.device("0001",1577699105000L,"设备1");
+        ArrayList<TaskListResponse.device> deviceArrayList = new ArrayList<TaskListResponse.device>();
+        deviceArrayList.add(device1);
+        listResponse.setList(deviceArrayList);
+        taskPresenter.uploadTaskList(taskListResponse);
+    }
+
     private void clearList() {
         /*if(epcDataList != null){
             epcDataList.clear();
@@ -134,6 +154,7 @@ public class TaskDetailActivity extends BaseTitleBackActivity implements TaskCon
     }
 
     private void ReadRfidStop() {
+        tempNumber=0;
         mInventoryStart = false;
 
         if (mInventoryThread != null) {
@@ -163,7 +184,7 @@ public class TaskDetailActivity extends BaseTitleBackActivity implements TaskCon
         if (OemRfid.client().continueScanRfid()) {
             Toast.makeText(this,"开始扫描Rfid设备",Toast.LENGTH_LONG).show();
             System.out.println("RfidInventoryStart sucess.");
-            tvTaskNumber.setText("@@"+testtemp);
+            //tvTaskNumber.setText("@@"+testtemp);
             mInventoryStart = true;
             mInventoryThread = new Thread(mInventoryRunable);
             mInventoryThread.start();
@@ -230,23 +251,31 @@ public class TaskDetailActivity extends BaseTitleBackActivity implements TaskCon
                 if(mEPCList.get(i).getId().contains("3400300833")){
 
                     for(int j=0; j<scanDevices.size(); j++){
-                        if(scanDevices.get(j).getId().contains("1111")){
+                        if(scanDevices.get(j).getId().contains("0001")){
                             scanDevices.get(j).setIndicator(true);
                             scanDevices.get(j).setLastModifyDate(System.currentTimeMillis());
+                            /*if(tempNumber<=taskListResponse.getList().size()){
+                                tempNumber++;
+                            }*/
                         }
                     }
                 }else{
                     if(mEPCList.get(i).getId().contains("30000048029C130")){
                         for(int j=0; j<scanDevices.size(); j++){
-                            if(scanDevices.get(j).getId().contains("222")){
+                            if(scanDevices.get(j).getId().contains("0002")){
                                 scanDevices.get(j).setIndicator(true);
                                 scanDevices.get(j).setLastModifyDate(System.currentTimeMillis());
+                                /*if(tempNumber<=taskListResponse.getList().size()){
+                                    tempNumber++;
+                                }*/
                             }
                         }
                     }
                 }
             }
-            tvTaskNumber.setText(mEPCList.size()+ " !"+testtemp);//+"  "+epcDataList.size() +" !"+testtemp
+            //tvTaskNumber.setText(mEPCList.size()+ " !"+testtemp);//+"  "+epcDataList.size() +" !"+testtemp
+
+            tvTaskNumber.setText(taskDetailAdapter.getNumberofIndicatorTrue()+"");
             taskDetailAdapter.updateTaskDetailEpcList(scanDevices);
             taskDetailAdapter.notifyDataSetChanged();
         }

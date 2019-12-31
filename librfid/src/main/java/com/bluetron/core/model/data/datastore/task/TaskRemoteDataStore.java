@@ -3,6 +3,7 @@ package com.bluetron.core.model.data.datastore.task;
 import com.bluetron.core.bean.task.TaskListResponse;
 import com.bluetron.core.model.api.ApiService;
 import com.bluetron.rxretrohttp.RxRetroHttp;
+import com.bluetron.rxretrohttp.bean.NoneResponse;
 
 import java.util.List;
 
@@ -26,4 +27,8 @@ public class TaskRemoteDataStore extends TaskDataStore{
         return mService.getTaskList();
     }
 
+    @Override
+    public Observable<NoneResponse> uploadTaskList(TaskListResponse taskListResponse) {
+        return mService.uploadTaskList(taskListResponse);
+    }
 }

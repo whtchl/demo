@@ -18,6 +18,9 @@ public class TaskListResponse implements Parcelable {
     private long createTime;
     private int taskNum;
     private ArrayList<device> list;
+    public TaskListResponse(){
+
+    }
     //private static final long serialVersionUID = 8711368826010014025L;
 /*
     protected TaskListResponse(Parcel in) {

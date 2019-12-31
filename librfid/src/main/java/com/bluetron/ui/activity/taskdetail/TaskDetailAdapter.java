@@ -39,12 +39,23 @@ public class TaskDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public void updateTaskDetailEpcList(ArrayList<ScanDevice>  list){
         //scanDeviceArrayList.clear();
         scanDeviceArrayList = list;
+    }
 
+    public int getNumberofIndicatorTrue(){
+        int temp=0;
+        if(scanDeviceArrayList!=null){
+            for(int i =0;i<scanDeviceArrayList.size();i++){
+                if(scanDeviceArrayList.get(i).isIndicator()){
+                    temp++;
+                }
+            }
+        }
+        return temp;
     }
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         ((MyTaskDetailViewHolder) viewHolder).tvItemTaskName.setText(scanDeviceArrayList.get(i).getName());
-        //((MyTaskDetailViewHolder) viewHolder).tvItemDeviceData.setText(scanDeviceArrayList.get(i).ge);
+        ((MyTaskDetailViewHolder) viewHolder).tvItemDeviceData.setText(scanDeviceArrayList.get(i).getId());
         if(scanDeviceArrayList.get(i).isIndicator()){
             ((MyTaskDetailViewHolder) viewHolder).ivIndicator.setVisibility(View.VISIBLE);
         }else{

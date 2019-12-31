@@ -1,12 +1,14 @@
 package com.bluetron.core.model.api;
 
+import com.bluetron.rxretrohttp.bean.NoneResponse;
 import com.bluetron.core.bean.task.TaskListResponse;
 
 import java.util.List;
 
 import io.reactivex.Observable;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.Query;
+import retrofit2.http.POST;
 
 /**
  * @auther tongxb
@@ -22,4 +24,6 @@ public interface ApiService {
     @GET(Apis.TaskAPI.GET_TASK_LIST)
     Observable<List<TaskListResponse>> getTaskList();//@Query("token")String token
 
+    @POST(Apis.TaskAPI.POST_TASK_LIST)
+    Observable<NoneResponse> uploadTaskList(@Body TaskListResponse taskListResponse);//@Query("token")String token
 }

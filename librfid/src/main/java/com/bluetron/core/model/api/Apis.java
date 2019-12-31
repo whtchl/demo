@@ -19,6 +19,7 @@ public class Apis {
 
     public static class TaskAPI {
         public static final String
-                GET_TASK_LIST = API_REMOTE_TITLE + "tasks";
+                GET_TASK_LIST = API_REMOTE_TITLE + "tasks",
+                POST_TASK_LIST = API_REMOTE_TITLE + "task";
     }
 }

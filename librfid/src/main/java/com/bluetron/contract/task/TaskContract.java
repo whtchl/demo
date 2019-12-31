@@ -15,14 +15,14 @@ public interface TaskContract {
     interface View extends BaseView{
 
         void onGetTaskList(List<TaskListResponse> response);
-
+        void onUploadTaskList();
     }
 
 
     interface Presenter extends BasePresenter<View>{
 
         void getTaskList();
-
+        void uploadTaskList(TaskListResponse taskListResponse);
     }
 
 }

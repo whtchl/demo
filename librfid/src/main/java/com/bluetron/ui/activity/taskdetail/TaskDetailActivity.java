@@ -29,6 +29,9 @@ import com.bluetron.librfid.R;
 import com.bluetron.presenter.task.TaskPresenter;
 import com.bluetron.router.Navigation;
 import com.bluetron.router.PathConstants;
+import com.bluetron.rxretrohttp.RxRetroHttp;
+import com.bluetron.rxretrohttp.bean.NoneResponse;
+import com.bluetron.rxretrohttp.subscriber.ApiObserver;
 import com.bluetron.ui.activity.aroundrfidlist.AroundRfidListActivity;
 import com.example.liboemrfid.OemRfid;
 import com.seuic.uhf.EPC;
@@ -36,6 +39,14 @@ import com.seuic.uhf.EPC;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 @Route(path = PathConstants.PATH_TASK_DETAIL)
 public class TaskDetailActivity extends BaseTitleBackActivity implements TaskContract.View{
@@ -134,13 +145,13 @@ public class TaskDetailActivity extends BaseTitleBackActivity implements TaskCon
     }
 
     public void OnClickUploadData(View v) {
-        TaskListResponse listResponse = new TaskListResponse();
+       /* TaskListResponse listResponse = new TaskListResponse();
         listResponse.setId("1");
         listResponse.setName("周盘点");
         TaskListResponse.device device1 =new  TaskListResponse.device("0001",1577699105000L,"设备1");
         ArrayList<TaskListResponse.device> deviceArrayList = new ArrayList<TaskListResponse.device>();
         deviceArrayList.add(device1);
-        listResponse.setList(deviceArrayList);
+        listResponse.setList(deviceArrayList);*/
         taskPresenter.uploadTaskList(taskListResponse);
     }
 
@@ -261,7 +272,7 @@ public class TaskDetailActivity extends BaseTitleBackActivity implements TaskCon
                         }
                     }
                 }else{
-                    if(mEPCList.get(i).getId().contains("30000048029C130")){
+                    if(mEPCList.get(i).getId().contains("FECB6")){
                         for(int j=0; j<scanDevices.size(); j++){
                             if(scanDevices.get(j).getDevice().getId().contains("0002")){
                                 scanDevices.get(j).setIndicator(true);
@@ -281,4 +292,5 @@ public class TaskDetailActivity extends BaseTitleBackActivity implements TaskCon
             taskDetailAdapter.notifyDataSetChanged();
         }
     }
+
 }

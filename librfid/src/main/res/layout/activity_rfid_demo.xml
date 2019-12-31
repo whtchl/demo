@@ -55,7 +55,7 @@
                 android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="写入标签"
+                android:text="读取标签"
                 android:textColor="@color/white"
                 android:textSize="30sp"></TextView>
 

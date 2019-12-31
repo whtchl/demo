@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ import com.bluetron.librfid.R;
 import com.bluetron.router.PathConstants;
 import com.bluetron.ui.activity.popupwindow.PopupWindowLoading;
 import com.bluetron.ui.activity.taskdetail.TaskDetailAdapter;
+import com.bluetron.utils.TUtils;
 import com.example.liboemrfid.OemRfid;
 import com.example.liboemrfid.OemType;
 import com.example.liboemrfid.seuic.BaseUtil;
@@ -30,6 +32,14 @@ import com.seuic.uhf.EPC;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 @Route(path = PathConstants.PATH_AROUND_RFID_LIST)
 public class AroundRfidListActivity extends BaseTitleBackActivity {
@@ -114,7 +124,11 @@ public class AroundRfidListActivity extends BaseTitleBackActivity {
         }else if(epcDataList == null || (epcDataList!=null && epcDataList.size() == 0)){
             Toast.makeText(this,"没有扫描到数据，不能进行读取Rfid操作",Toast.LENGTH_LONG).show();
         }else{
-            ReadRfidUserData();
+            //ReadRfidUserData();
+            popupWindowLoading.showPopupWindow();
+            popupWindowLoading.setOutSideDismiss(false);
+            popupWindowLoading.setOutSideTouchable(false);
+            RxJavaReadRfidData();
         }
 
     }
@@ -125,7 +139,7 @@ public class AroundRfidListActivity extends BaseTitleBackActivity {
         if(mEPCList !=null ){//&& epcDataList != null
             for(int i=0; i<mEPCList.size();i++){
 
-                epcDataList.add(new EpcData(mEPCList.get(i),"12333"));
+                epcDataList.add(new EpcData(mEPCList.get(i),""));
 
             }
             testtemp = testtemp + epcDataList.size()+" ";
@@ -134,6 +148,41 @@ public class AroundRfidListActivity extends BaseTitleBackActivity {
         }
     }
 
+    private void ReadRfidUserDataThread() {
+
+        if(mEPCList != null){
+            epcDataList.clear();
+            for(int i=0;i<mEPCList.size();i++){
+
+                int bank = Integer.parseInt(OemType.SECUIC_BANK);
+                int address = Integer.parseInt(OemType.SECUIC_ADDRESS);
+                int length = Integer.parseInt(OemType.SECUIC_LEN);
+
+                String str_password = OemType.SECUIC_PWD;
+
+                byte[] Epc = mEPCList.get(i).id;
+
+                byte[] btPassword = new byte[16];
+                BaseUtil.getHexByteArray(str_password, btPassword, btPassword.length);
+                byte[] buffer = new byte[OemType.SECUIC_MAX_LEN];
+                if (length > OemType.SECUIC_MAX_LEN) {
+                    buffer = new byte[length];
+                }
+
+                String data="";
+                if (!OemRfid.client().RfidreadTagData(Epc, btPassword, bank, address, length, buffer)) {
+
+                    Toast.makeText(context, mEPCList.get(i).getId()+":读取Rfid数据失败", Toast.LENGTH_SHORT).show();
+                } else {
+                    //Toast.makeText(getActivity(), R.string.readTagData_sucess, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context, "读取Rfid数据成功", Toast.LENGTH_SHORT).show();
+                    data = BaseUtil.getHexString(buffer, length, " ");
+                    data = BaseUtil.convertHexToAsCall(data);
+                }
+                epcDataList.add(new EpcData(mEPCList.get(i),data));
+            }
+        }
+    }
     private void ReadRfidUserData() {
 
         if(mEPCList != null){
@@ -258,7 +307,7 @@ public class AroundRfidListActivity extends BaseTitleBackActivity {
             /*if (count > m_count) {
                 playSound();
             }*/
-            tvRfidTotal.setText(mEPCList.size()+"  "+epcDataList.size() +" !"+testtemp);
+            tvRfidTotal.setText(mEPCList.size()+"");//+"  "+epcDataList.size() +" !"+testtemp
             aroundRfidListAdapter.updateEpcDataList(epcDataList);
             aroundRfidListAdapter.notifyDataSetChanged();
 
@@ -281,5 +330,80 @@ public class AroundRfidListActivity extends BaseTitleBackActivity {
 
             }
         }
+    }
+
+
+    public void RxJavaReadRfidData(){
+        Observable<List<EpcData>> observable = Observable.create(new ObservableOnSubscribe<List<EpcData>>() {
+            @Override
+            public void subscribe(ObservableEmitter<List<EpcData>> emitter) throws Exception {
+                if(mEPCList != null){
+                    epcDataList.clear();
+                    for(int i=0;i<mEPCList.size();i++){
+
+                        int bank = Integer.parseInt(OemType.SECUIC_BANK);
+                        int address = Integer.parseInt(OemType.SECUIC_ADDRESS);
+                        int length = Integer.parseInt(OemType.SECUIC_LEN);
+
+                        String str_password = OemType.SECUIC_PWD;
+
+                        byte[] Epc = mEPCList.get(i).id;
+
+                        byte[] btPassword = new byte[16];
+                        BaseUtil.getHexByteArray(str_password, btPassword, btPassword.length);
+                        byte[] buffer = new byte[OemType.SECUIC_MAX_LEN];
+                        if (length > OemType.SECUIC_MAX_LEN) {
+                            buffer = new byte[length];
+                        }
+
+                        String data="";
+                        if (!OemRfid.client().RfidreadTagData(Epc, btPassword, bank, address, length, buffer)) {
+
+                            //Toast.makeText(context, mEPCList.get(i).getId()+":读取Rfid数据失败", Toast.LENGTH_SHORT).show();
+                            //emitter.onError(new Throwable(mEPCList.get(i).getId()+":读取Rfid数据失败"));
+                        } else {
+                            //Toast.makeText(getActivity(), R.string.readTagData_sucess, Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(context, "读取Rfid数据成功", Toast.LENGTH_SHORT).show();
+                            data = BaseUtil.getHexString(buffer, length, " ");
+                            data = BaseUtil.convertHexToAsCall(data);
+                            epcDataList.add(new EpcData(mEPCList.get(i),data));
+
+                        }
+                    }
+                }
+                emitter.onNext(epcDataList);
+
+            }
+        });
+
+        Observer<List<EpcData>> observer = new Observer<List<EpcData>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(List<EpcData> list) {
+                aroundRfidListAdapter.updateEpcDataList(epcDataList);
+                aroundRfidListAdapter.notifyDataSetChanged();
+                popupWindowLoading.dismiss();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                //Toast.makeText(context,e.getMessage(),Toast.LENGTH_SHORT).show();//e.getMessage()
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+
+        //订阅的时候指定观察者和和可观察者所在的线程
+        observable.subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+
     }
 }

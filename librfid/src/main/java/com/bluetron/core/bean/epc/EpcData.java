@@ -8,11 +8,25 @@ import com.seuic.uhf.EPC;
 public class EpcData {
     private EPC epc;
     private String userData;
-
+    private String sbmc;
 
     public EpcData(EPC epc1, String userData1){
         this.epc = epc1;
         this.userData = userData1;
+    }
+
+    public EpcData(EPC epc1, String userData1,String sbmc){
+        this.epc = epc1;
+        this.userData = userData1;
+        this.sbmc = sbmc;
+    }
+
+    public String getSbmc() {
+        return sbmc;
+    }
+
+    public void setSbmc(String sbmc) {
+        this.sbmc = sbmc;
     }
 
     public EPC getEpc() {

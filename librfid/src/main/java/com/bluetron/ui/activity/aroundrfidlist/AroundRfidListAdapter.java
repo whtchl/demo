@@ -51,6 +51,19 @@ public class AroundRfidListAdapter extends RecyclerView.Adapter<MyAroundRfidList
         viewHolder.tvItemAroundRfidUuid.setText(epcData.get(i).getEpc().getId()+"");
         viewHolder.tvItemAroundRfidRssi.setText(epcData.get(i).getEpc().rssi+"");
         viewHolder.tvItemAroundRfidData.setText(epcData.get(i).getUserData()+"");
+        viewHolder.tv_sbmc.setText(epcData.get(i).getSbmc());
+    }
+
+    private void setSbmc(){
+        if(epcData != null){
+            for(int i=0;i<epcData.size();i++){
+                if(epcData.get(i).getEpc().getId().contains("3400300833")){
+                    epcData.get(i).setSbmc("设备1");
+                }else if(epcData.get(i).getEpc().getId().contains("FECB6")){
+                    epcData.get(i).setSbmc("设备2");
+                }
+            }
+        }
     }
 
     @Override
@@ -61,6 +74,7 @@ public class AroundRfidListAdapter extends RecyclerView.Adapter<MyAroundRfidList
 
         epcData.clear();
         epcData.addAll(list);
+        setSbmc();
 
         //if(epcData != null)
         //Toast.makeText(context,epcData.size()+"&",Toast.LENGTH_SHORT).show();
@@ -68,7 +82,7 @@ public class AroundRfidListAdapter extends RecyclerView.Adapter<MyAroundRfidList
 }
 
 class MyAroundRfidListViewHolder extends RecyclerView.ViewHolder {
-    public TextView tvItemAroundRfidUuid,tvItemAroundRfidData,tvItemAroundRfidRssi;
+    public TextView tvItemAroundRfidUuid,tvItemAroundRfidData,tvItemAroundRfidRssi,tv_sbmc;
     public RelativeLayout rlItemAroundRfid;
     public MyAroundRfidListViewHolder(View itemView) {
         super(itemView);
@@ -76,5 +90,6 @@ class MyAroundRfidListViewHolder extends RecyclerView.ViewHolder {
         tvItemAroundRfidUuid = itemView.findViewById(R.id.tv_item_around_rfid_uuid);
         tvItemAroundRfidData = itemView.findViewById(R.id.tv_item_around_rfid_data);
         rlItemAroundRfid = itemView.findViewById(R.id.rl_item_around_rfid);
+        tv_sbmc = itemView.findViewById(R.id.tv_sbmc);
     }
 }

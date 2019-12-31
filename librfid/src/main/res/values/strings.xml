@@ -10,7 +10,7 @@
 
 
     <string name="device_id">设备ID</string>
-    <string name="last_modify_time">最后修改时间</string>
+    <string name="last_modify_time">最后盘点时间</string>
     <string name="id">ID:</string>
 
     <string name="jd">进度:</string>

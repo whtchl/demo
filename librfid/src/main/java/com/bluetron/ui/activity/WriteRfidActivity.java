@@ -52,7 +52,6 @@ public class WriteRfidActivity extends BaseTitleBackActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_write_rfid);
     }
 
     @Override
@@ -78,31 +77,8 @@ public class WriteRfidActivity extends BaseTitleBackActivity {
     }
 
     public void OnClickReadRfidData(View v) {
-        RxjavaReadData();//ReadData();
+        RxjavaReadData();
 
-        /*int bank = Integer.parseInt(OemType.SECUIC_BANK);
-        int address = Integer.parseInt(OemType.SECUIC_ADDRESS);
-        int length = Integer.parseInt(OemType.SECUIC_LEN);
-
-        String str_password = OemType.SECUIC_PWD;
-
-        byte[] Epc = ecpid;
-
-        byte[] btPassword = new byte[16];
-        BaseUtil.getHexByteArray(str_password, btPassword, btPassword.length);
-        byte[] buffer = new byte[OemType.SECUIC_MAX_LEN];
-        if (length > OemType.SECUIC_MAX_LEN) {
-            buffer = new byte[length];
-        }
-
-        String data = "";
-        if (!OemRfid.client().RfidreadTagData(Epc, btPassword, bank, address, length, buffer)) {
-
-            Toast.makeText(this, ecpid + ":读取Rfid数据失败", Toast.LENGTH_SHORT).show();
-        } else {
-            data = BaseUtil.getHexString(buffer, length, " ");
-            tv_rfid_data.setText(BaseUtil.convertHexToAsCall(data));
-        }*/
     }
     private void ReadData(){
         int bank = Integer.parseInt(OemType.SECUIC_BANK);
@@ -133,7 +109,6 @@ public class WriteRfidActivity extends BaseTitleBackActivity {
     //写入标签
     public void OnClickWriteRfidData(View v) {
         RxjavaWriteData();
-       //WriteData();
     }
 
     private void WriteData(){

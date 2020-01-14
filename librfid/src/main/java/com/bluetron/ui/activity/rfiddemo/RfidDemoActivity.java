@@ -75,7 +75,7 @@ public class RfidDemoActivity extends BaseTitleBackActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // new object
-        OemRfid.initialize(this, OemType.SECUIC);
+        OemRfid.initialize(this, OemType.RFID_NULL);
         OemRfid.client();
         // open UHF
         boolean ret = OemRfid.client().openRfid();

@@ -39,7 +39,12 @@ public class TaskPresenter extends BasePresenterImpl<TaskContract.View> implemen
                 .subscribe(new ApiObserver<List<TaskListResponse>>(mView) {
                     @Override
                     protected void success(List<TaskListResponse> data) {
-                        mView.onGetTaskList(data);
+                        mView.onGetTaskListSuccess(data);
+                    }
+
+                    @Override
+                    protected void error(Throwable throwable){
+                        mView.onGetTaskListErr(throwable);
                     }
                 });
     }

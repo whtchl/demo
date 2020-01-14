@@ -122,8 +122,14 @@ public class TaskDetailActivity extends BaseTitleBackActivity implements TaskCon
     }
 
     @Override
-    public void onGetTaskList(List<TaskListResponse> response) {
+    public void onGetTaskListSuccess(List<TaskListResponse> response) {
         Log.i("tchl","size:"+response.size());
+    }
+
+
+    @Override
+    public void onGetTaskListErr(Throwable t) {
+
     }
 
     @Override

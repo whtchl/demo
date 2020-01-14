@@ -14,7 +14,8 @@ public interface TaskContract {
 
     interface View extends BaseView{
 
-        void onGetTaskList(List<TaskListResponse> response);
+        void onGetTaskListSuccess(List<TaskListResponse> response);
+        void onGetTaskListErr(Throwable t);
         void onUploadTaskList();
     }
 

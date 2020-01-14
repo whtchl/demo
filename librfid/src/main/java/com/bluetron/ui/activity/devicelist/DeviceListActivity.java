@@ -3,8 +3,6 @@ package com.bluetron.ui.activity.devicelist;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +16,6 @@ import com.bluetron.core.bean.task.TaskListResponse;
 import com.bluetron.librfid.R;
 import com.bluetron.presenter.task.TaskPresenter;
 import com.bluetron.router.PathConstants;
-import com.bluetron.ui.activity.tasklist.MyAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -149,7 +146,7 @@ public class DeviceListActivity extends BaseTitleBackActivity implements TaskCon
         refresh();
     }
     @Override
-    public void onGetTaskList(List<TaskListResponse> response) {
+    public void onGetTaskListSuccess(List<TaskListResponse> response) {
         Log.i("tchl", "TaskListActivity size:" + response.size());
         taskListResponses = response;
         /*TaskListResponse response1 = response.get(0);
@@ -164,6 +161,12 @@ public class DeviceListActivity extends BaseTitleBackActivity implements TaskCon
                 refreshLayout.setRefreshing(false);
             }
         }, 1000);
+
+    }
+
+
+    @Override
+    public void onGetTaskListErr(Throwable t) {
 
     }
 
